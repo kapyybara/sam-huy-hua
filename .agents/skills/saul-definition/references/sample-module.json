@@ -1,0 +1,105 @@
+{
+  "definition": {
+    "modules": [
+      {
+        "name": "user",
+        "models": [
+          {
+            "name": "User",
+            "module": "user",
+            "description": "Đại diện cho người dùng trong hệ thống",
+            "fields": [
+              { "name": "id", "type": { "type": "string" }, "description": "ID duy nhất" },
+              { "name": "username", "type": { "type": "string" }, "description": "Tên đăng nhập" },
+              { "name": "email", "type": { "type": "string" }, "description": "Email" },
+              { "name": "fullName", "type": { "type": "string" }, "description": "Họ tên" },
+              { "name": "phoneNumber", "type": { "type": "string" }, "description": "SĐT" },
+              { "name": "createdAt", "type": { "type": "Date" }, "description": "Thời gian tạo" },
+              { "name": "updatedAt", "type": { "type": "Date" }, "description": "Thời gian cập nhật" }
+            ]
+          }
+        ],
+        "errors": [
+          {
+            "name": "UserNotFound",
+            "module": "user",
+            "description": "Lỗi khi không tìm thấy người dùng",
+            "fields": [
+              { "name": "code", "type": { "type": "string" } },
+              { "name": "message", "type": { "type": "string" } }
+            ]
+          },
+          {
+            "name": "UserValidation",
+            "module": "user",
+            "description": "Lỗi khi dữ liệu người dùng không hợp lệ",
+            "fields": [
+              { "name": "code", "type": { "type": "string" } },
+              { "name": "message", "type": { "type": "string" } },
+              { "name": "errors", "type": { "type": "Array", "itemType": { "type": "string" } } }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "UserService",
+            "module": "user",
+            "description": "Dịch vụ quản lý người dùng",
+            "functions": [
+              {
+                "name": "getUser",
+                "module": "user",
+                "description": "Lấy thông tin người dùng",
+                "params": [
+                  { "name": "id", "type": { "type": "string" } }
+                ],
+                "returnType": { "type": "Model", "ref": { "name": "User", "module": "user" } },
+                "errorTypes": [{ "name": "UserNotFound", "module": "user" }]
+              },
+              {
+                "name": "createUser",
+                "module": "user",
+                "description": "Tạo mới người dùng",
+                "params": [
+                  {
+                    "name": "user",
+                    "type": { "type": "Model", "ref": { "name": "User", "module": "user" } }
+                  }
+                ],
+                "returnType": { "type": "Model", "ref": { "name": "User", "module": "user" } },
+                "errorTypes": [{ "name": "UserValidation", "module": "user" }]
+              },
+              {
+                "name": "updateUser",
+                "module": "user",
+                "description": "Cập nhật thông tin người dùng",
+                "params": [
+                  { "name": "id", "type": { "type": "string" } },
+                  {
+                    "name": "user",
+                    "type": { "type": "Model", "ref": { "name": "User", "module": "user" } }
+                  }
+                ],
+                "returnType": { "type": "Model", "ref": { "name": "User", "module": "user" } },
+                "errorTypes": [
+                  { "name": "UserNotFound", "module": "user" },
+                  { "name": "UserValidation", "module": "user" }
+                ]
+              },
+              {
+                "name": "deleteUser",
+                "module": "user",
+                "description": "Xóa người dùng",
+                "params": [
+                  { "name": "id", "type": { "type": "string" } }
+                ],
+                "returnType": { "type": "null" },
+                "errorTypes": [{ "name": "UserNotFound", "module": "user" }]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
