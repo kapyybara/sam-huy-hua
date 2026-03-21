@@ -25,7 +25,7 @@
   --color-zalo: #0068FF;
   --color-hotline: #DC2626;
 
-  --font-heading: 'Playfair Display', 'Georgia', serif;
+  --font-heading: 'Lora', 'Georgia', serif;
   --font-body: 'Jost', 'Helvetica Neue', sans-serif;
 
   --radius-sm: 8px;
@@ -197,14 +197,27 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .brand-name {
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #fff;
   letter-spacing: 0.04em;
+  transition: color var(--transition-base);
+}
+
+.site-header.scrolled .brand-name {
+  color: var(--color-primary);
 }
 
 .brand-name .gold {
@@ -222,12 +235,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-secondary);
+  color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   position: relative;
   padding: 4px 0;
   cursor: pointer;
+  transition: color var(--transition-base);
+}
+
+.site-header.scrolled .nav-links a {
+  color: var(--color-secondary);
 }
 
 .nav-links a::after {
@@ -242,6 +260,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-links a:hover {
+  color: var(--color-accent-light);
+}
+
+.site-header.scrolled .nav-links a:hover {
   color: var(--color-accent);
 }
 
@@ -269,9 +291,13 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-primary);
+  background: #fff;
   border-radius: 2px;
-  transition: transform var(--transition-base), opacity var(--transition-base);
+  transition: transform var(--transition-base), opacity var(--transition-base), background var(--transition-base);
+}
+
+.site-header.scrolled .menu-toggle span {
+  background: var(--color-primary);
 }
 
 .menu-toggle.active span:nth-child(1) {
@@ -794,13 +820,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: linear-gradient(135deg, #F5F5F0, #E7E5E4);
+  background: #fff;
 }
 
 .card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 12px;
   transition: transform var(--transition-slow);
 }
 
@@ -808,28 +835,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.07);
 }
 
-.card-image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #F5F5F0, #E7E5E4);
-  position: relative;
-}
 
-.card-image-placeholder svg {
-  width: 48px;
-  height: 48px;
-  color: var(--color-text-light);
-  opacity: 0.4;
-  transition: opacity var(--transition-base), transform var(--transition-base);
-}
-
-.glass-card:hover .card-image-placeholder svg {
-  opacity: 0.6;
-  transform: scale(1.1);
-}
 
 /* Quick view overlay on hover */
 .card-overlay {
