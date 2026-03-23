@@ -227,16 +227,62 @@ onUnmounted(() => {
     </div>
   </header>
 
-  <!-- Mobile Nav -->
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" :class="{ open: mobileMenuOpen }" @click="mobileMenuOpen = false"></div>
+
+  <!-- Mobile Nav Drawer -->
   <div class="mobile-nav" :class="{ open: mobileMenuOpen }">
-    <a @click.prevent="scrollToSection('hero')">Trang chủ</a>
-    <a @click.prevent="scrollToSection('about')">Giới thiệu</a>
-    <a @click.prevent="scrollToSection('products')">Sản phẩm</a>
-    <a @click.prevent="scrollToSection('testimonials')">Đánh giá</a>
-    <a @click.prevent="scrollToSection('contact')">Liên hệ</a>
-    <div style="display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; justify-content:center;">
-      <a :href="ZALO_URL" target="_blank" class="btn btn-zalo">Chat Zalo</a>
-      <a :href="'tel:' + HOTLINE.replace(/\s/g, '')" class="btn btn-gold">{{ HOTLINE }}</a>
+    <!-- Drawer Header -->
+    <div class="mobile-nav-header">
+      <div class="brand-icon">
+          <img src="/images/dtbshop-logo.png" alt="SÂM DTB SHOP" class="brand-logo-img" />
+        </div>
+      <span class="mobile-nav-header-brand">SÂM <span class="gold">DTB</span> SHOP</span>
+      <button class="mobile-nav-close" @click="mobileMenuOpen = false" aria-label="Đóng menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-nav-divider"></div>
+
+    <!-- Nav Links -->
+    <nav class="mobile-nav-links">
+      <a class="mobile-nav-item" @click.prevent="scrollToSection('hero')">
+        <span class="mobile-nav-num">01</span>
+        <span class="mobile-nav-label">Trang chủ</span>
+        <svg class="mobile-nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a class="mobile-nav-item" @click.prevent="scrollToSection('about')">
+        <span class="mobile-nav-num">02</span>
+        <span class="mobile-nav-label">Giới thiệu</span>
+        <svg class="mobile-nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a class="mobile-nav-item" @click.prevent="scrollToSection('products')">
+        <span class="mobile-nav-num">03</span>
+        <span class="mobile-nav-label">Sản phẩm</span>
+        <svg class="mobile-nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a class="mobile-nav-item" @click.prevent="scrollToSection('testimonials')">
+        <span class="mobile-nav-num">04</span>
+        <span class="mobile-nav-label">Đánh giá</span>
+        <svg class="mobile-nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a class="mobile-nav-item" @click.prevent="scrollToSection('contact')">
+        <span class="mobile-nav-num">05</span>
+        <span class="mobile-nav-label">Liên hệ</span>
+        <svg class="mobile-nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </nav>
+
+    <!-- CTA Bottom -->
+    <div class="mobile-nav-cta">
+      <a :href="ZALO_URL" target="_blank" class="mobile-nav-cta-btn btn-zalo-full">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+        Chat Zalo
+      </a>
+      <a :href="'tel:' + HOTLINE.replace(/\s/g, '')" class="mobile-nav-cta-btn btn-hotline-full">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        {{ HOTLINE }}
+      </a>
     </div>
   </div>
 
